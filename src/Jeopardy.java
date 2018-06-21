@@ -44,7 +44,7 @@ public class Jeopardy implements ActionListener {
 		quizPanel = new JPanel();
 		frame.setLayout(new BorderLayout());
 		
-		// 1. Make the frame show up
+		frame.setVisible(true);
 
 		// 2. Give your frame a title
 		

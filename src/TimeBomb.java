@@ -8,8 +8,9 @@
 import java.applet.AudioClip;
 import java.io.IOException;
 import javax.swing.JApplet;
+import javax.swing.JOptionPane;
 
-public class CowTimer {
+public class TimeBomb {
 	/*
 	 * This is an advanced recipe. There may be more than one line of code for
 	 * each instruction.
@@ -17,29 +18,35 @@ public class CowTimer {
 	 */
 
 	public static void main(String[] args) throws InterruptedException {
-		/* 1. Make a CowTimer, set the time and start it. */
+		String ts = JOptionPane.showInputDialog("Time till explosion? Milliseconds, please. MINIMUM 5000!");
+		int t = Integer.parseInt(ts);
+		TimeBomb c = new TimeBomb();
+		c.setTime(t);
+		c.start();
+		
 
 	}
 
-	private int minutes;
+	private int ms;
 
 	public void setTime(int minutes) {
-		this.minutes = minutes;
-		System.out.println("Cow set to " + minutes + " minutes.");
+		this.ms = minutes;
+		System.out.println("Bomb set to " + ms + " milliseconds.");
 	}
 
 	public void start() throws InterruptedException {
-		/*
-		 * 2. Count down the minutes, print the current minute then sleep for 60
-		 * seconds using Thread.sleep(int milliseconds).
-		 */
-
-		/*
-		 * 3. When the timer is finished, use the playSound method to play a moo
-		 * sound. You can use the .wav file in the default package, or you can download 
-		 * one from freesound.org, then drag it intothe default package. 
-		 */
-
+		Thread.sleep(ms-5000);
+		speak("5");
+		Thread.sleep(1000);
+		speak("4");
+		Thread.sleep(1000);
+		speak("3");
+		Thread.sleep(1000);
+		speak("2");
+		Thread.sleep(1000);
+		speak("1");
+		Thread.sleep(1000);
+		playSound("boom.wav");
 	}
 
 	private void playSound(String fileName) {
