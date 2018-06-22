@@ -1,10 +1,14 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.management.Query;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import twitter4j.Query;
+import twitter4j.QueryResult;
+import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
+import twitter4j.auth.AccessToken;
 public class TweetSearch implements ActionListener {
 	JPanel p = new JPanel();
 	JFrame f = new JFrame();
