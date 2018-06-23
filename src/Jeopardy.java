@@ -6,9 +6,6 @@ import java.net.URL;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.io.File;
-
-/* This recipe is to be used with the Jeopardy Handout: http://bit.ly/1bvnvd4 */
-
 public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
@@ -63,10 +60,16 @@ public class Jeopardy implements ActionListener {
 
 		JButton buttonPressed = (JButton) arg0.getSource();
 		if (buttonPressed == firstButton) {
-			askQuestion("The Method For This Dialog", "JOptionPane.showMessageDialog(, )", 100);
+			askQuestion("The Method For This Dialog", "JOptionPane.showMessageDialog()", 100);
 		}
 		if (buttonPressed == secondButton) {
-			askQuestion("Lets you select a file", "JFileChooser", 200);
+			askQuestion("Lets you select a file", "What does JFileChooser Do?", 200);
+		}
+		if (buttonPressed == thirdButton) {
+			askQuestion("Lets you place multiple items in a frame", "What does JPanel Do?", 400);
+		}
+		if (buttonPressed == fourthButton) {
+			askQuestion("int a = 10", "How do you define an integer?", 600);
 		}
 
 		
@@ -77,14 +80,18 @@ public class Jeopardy implements ActionListener {
 		if (answer == correctAnswer) {
 			score = score + prizeMoney;
 			updateScore();
+			showCorrectImage();
 		}
 		else {
 			score = score - prizeMoney;
 			JOptionPane.showMessageDialog(null, "NOPE! It was " + correctAnswer + " !");
+			updateScore();
+			showIncorrectImage();
 		}
 			
 		
 	}
+	@SuppressWarnings("deprecation")
 	private void playSound(String fileName) {
 		AudioClip scream = JApplet.newAudioClip(getClass().getResource(fileName));
 		scream.play();
