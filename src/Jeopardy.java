@@ -30,10 +30,10 @@ public class Jeopardy implements ActionListener {
 		JPanel p = createHeader("Java");
 		quizPanel.add(p);
 		frame.add(quizPanel);
-		JButton firstButton = createButton("$100");
-		JButton secondButton = createButton("$200");
-		JButton thirdButton = createButton("$400");
-		JButton fourthButton = createButton("$600");
+		firstButton = createButton("$100");
+		secondButton = createButton("$200");
+		thirdButton = createButton("$400");
+		fourthButton = createButton("$600");
 		quizPanel.add(firstButton);
 		firstButton.addActionListener(this);
 		quizPanel.add(secondButton);
@@ -59,17 +59,17 @@ public class Jeopardy implements ActionListener {
 		playSound("jeopardy.wav");
 
 		JButton buttonPressed = (JButton) arg0.getSource();
-		if (buttonPressed == firstButton) {
-			askQuestion("The Method For This Dialog", "JOptionPane.showMessageDialog()", 100);
+		if (buttonPressed.equals(firstButton)) {
+			askQuestion("The Method For This Dialog", "What is JOptionPane.showInputDialog()?", 100);
 		}
-		if (buttonPressed == secondButton) {
-			askQuestion("Lets you select a file", "What does JFileChooser Do?", 200);
+		else if (buttonPressed.equals(secondButton)) {
+			askQuestion("Lets you select a file", "What is JFileChooser?", 200);
 		}
-		if (buttonPressed == thirdButton) {
-			askQuestion("Lets you place multiple items in a frame", "What does JPanel Do?", 400);
+		else if (buttonPressed.equals(thirdButton)) {
+			askQuestion("Lets you place multiple items in a frame", "What is JPanel?", 400);
 		}
-		if (buttonPressed == fourthButton) {
-			askQuestion("int a = 10", "How do you define an integer?", 600);
+		else if (buttonPressed.equals(fourthButton)) {
+			askQuestion("yee a = new yee();", "How do you define an object of type \"yee\"?", 600);
 		}
 
 		
@@ -77,7 +77,8 @@ public class Jeopardy implements ActionListener {
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
 		String answer = JOptionPane.showInputDialog(question);
-		if (answer == correctAnswer) {
+		if (answer.equals(correctAnswer)) {
+			JOptionPane.showMessageDialog(null, "YESSSSSSS! Your money is $" + score + " plus $" + prizeMoney + " from this question! You're doing great!");
 			score = score + prizeMoney;
 			updateScore();
 			showCorrectImage();

@@ -1,26 +1,14 @@
-
-/*
- *    Copyright (c) The League of Amazing Programmers 2013-2018
- *    Level 1
- */
-
 import java.applet.AudioClip;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.util.Random;
-
+import java.util.*;
 import javax.imageio.ImageIO;
-import javax.swing.JApplet;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 public class FortuneTeller extends JPanel implements Runnable, MouseListener {
-
+	Scanner sc = new Scanner(System.in);
     JFrame frame = new JFrame();
 
     int frameWidth = 500;
@@ -29,13 +17,14 @@ public class FortuneTeller extends JPanel implements Runnable, MouseListener {
     FortuneTeller() throws Exception {
    	 // 1. Choose an image for your fortune teller and put it in your default package
    	 fortuneTellerImage = ImageIO.read(getClass().getResource("fortune teller.png"));
-   	 // 2. Adjust the frameWidth and frameHeight variables to fit your image nicely (doesn’t need a new line of code)
+   	 frame.setSize(500, 300);
    	 // 4. add a mouse listener to the frame
+   	 frame.addMouseListener(this);
 
     }
 
     static void begin() {
-   	 // 3. Welcome the user. Give them a hint for the secret location.
+    		JOptionPane.showMessageDialog(null, "When you reach me in the land of thr**s, use the console.");
 
     }
 
@@ -44,23 +33,34 @@ public class FortuneTeller extends JPanel implements Runnable, MouseListener {
    	 int mouseX = e.getX();
    	 int mouseY = e.getY();
    	 // 5. Print the mouseX variable
-
-   	 // 6. Add the mouseY variable to the previous line so that it prints out too (no new line)
-   	 // 7. Adjust your secret location co-ordinates here:
-   	 int secretLocationX = 0;
-   	 int secretLocationY = 0;
+   	 System.out.println(mouseX);
+   	 System.out.println(mouseY);
+   	 int secretLocationX = 300;
+   	 int secretLocationY = 300;
    	 /** If the mouse co-ordinates and secret location are close, we'll let them ask a question. */
    	 if (areClose(mouseX, secretLocationX) && areClose(mouseY, secretLocationY)) {
    		 // 8. Get the user to enter a question for the fortune teller
-
-   		 // 9. Find a spooky sound and put it in your default package (freesound.org)
-   		 // AudioClip sound = JApplet.newAudioClip(getClass().getResource("creepy-noise.wav"));
+   		 String q = sc.nextLine();
+   		 AudioClip sound = JApplet.newAudioClip(getClass().getResource("creepy-noise.wav"));
    		 // 10. Play the sound
-
+   		 sound.play();
    		 // 11. Use the pause() method below to wait until your music has finished
-
-   		 // 12. Insert your completed Magic 8 ball recipe (http://bit.ly/Zdrf6d) here
-
+   		 pause(10);
+   		 Random r = new Random();
+   		 int fta = r.nextInt(4);
+   		 if(fta == 0){
+   			 System.out.println("YES!");
+   		 }
+   		if(fta == 1){
+  			 System.out.println("NO. :(");
+  		 }
+   		if(fta == 2){
+ 			 System.out.println("Ask Google!");
+ 		 }
+   		if(fta == 3){
+ 			 System.out.println("Visit www.samuelsharp.com for the answer!");
+ 		 }
+   		 
    	 }
 
     }
